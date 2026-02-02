@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pranav ❤️ Sayali</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 30px;
+    padding: 30px 25px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    animation: zoomIn 1s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* HEART SHAPED IMAGE */
+.photo-wrapper {
+    width: 160px;
+    height: 160px;
+    margin: auto;
+    position: relative;
+    transform: rotate(-45deg);
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(233,30,99,0.6);
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(45deg) scale(1.2);
+}
+
+.photo-wrapper::before,
+.photo-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.photo-wrapper::before {
+    top: -80px;
+    left: 0;
+}
+
+.photo-wrapper::after {
+    left: 80px;
+    top: 0;
+}
+
+h1 {
+    color: #e91e63;
+    margin: 20px 0 5px;
+}
+
+h2 {
+    color: #ff4081;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.yes {
+    background: linear-gradient(45deg, #ff4081, #e91e63);
+    color: white;
+}
+
+.yes:hover {
+    transform: scale(1.1);
+}
+
+.no {
+    background: #ccc;
+    position: relative;
+}
+
+/* HEART ANIMATION */
+.heart {
+    position: absolute;
+    color: #ff4081;
+    font-size: 22px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+    <div class="photo-wrapper">
+        <img src="us.jpg" alt="Pranav and Sayali">
+    </div>
+
+    <h1>Pranav ❤️ Sayali</h1>
+    <h2>Happy Valentine’s Day</h2>
+
+    <p>Sayali, will you be my Valentine? 💖</p>
+
+    <div class="buttons">
+        <button class="yes" onclick="yesClicked()">Yes 💕</button>
+        <button class="no" onmouseover="moveNo()">No 🙈</button>
+    </div>
+</div>
+
+<script>
+function yesClicked() {
+    document.getElementById("music").play();
+    document.getElementById("card").innerHTML = `
+        <div class="photo-wrapper">
+            <img src="us.jpg">
+        </div>
+        <h1>Forever Us 💞</h1>
+        <p>Pranav & Sayali<br>
+        My heart chose you ❤️</p>
+    `;
+    startHearts();
+}
+
+function moveNo() {
+    const btn = document.querySelector('.no');
+    btn.style.transform = `translate(${Math.random()*200-100}px, ${Math.random()*200-100}px)`;
+}
+
+function startHearts() {
+    setInterval(() => {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+        h.style.left = Math.random()*100 + "vw";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 5000);
+    }, 250);
+}
+</script>
+
+</body>
+</html>
